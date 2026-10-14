@@ -17,17 +17,14 @@ import { DepartmentWorkspace } from '@/pages/department/DepartmentWorkspace';
 function Routes() {
   const { path } = useRouter();
 
-  // Complaint details: /complaint/:id
   const complaintMatch = path.match(/^\/complaint\/(.+)$/);
   if (complaintMatch) {
     return <ComplaintDetails id={complaintMatch[1]} />;
   }
 
-  // Auth
   if (path === '/login') return <AuthPage mode="login" />;
   if (path === '/signup') return <AuthPage mode="signup" />;
 
-  // Citizen portal
   if (path === '/citizen/dashboard')
     return <CitizenLayout><CitizenDashboard /></CitizenLayout>;
   if (path === '/citizen/report')
@@ -37,7 +34,6 @@ function Routes() {
   if (path === '/citizen/history')
     return <CitizenLayout><ComplaintHistory /></CitizenLayout>;
 
-  // Department portal
   if (path === '/department/dashboard')
     return <DepartmentLayout><DepartmentDashboard /></DepartmentLayout>;
   if (path === '/department/assigned')
@@ -45,13 +41,11 @@ function Routes() {
   if (path === '/department/priority')
     return <DepartmentLayout><PriorityOverview /></DepartmentLayout>;
 
-  // Department workspace: /department/workspace/:id
   const workspaceMatch = path.match(/^\/department\/workspace\/(.+)$/);
   if (workspaceMatch) {
     return <DepartmentLayout><DepartmentWorkspace id={workspaceMatch[1]} /></DepartmentLayout>;
   }
 
-  // Default: landing
   return <LandingPage />;
 }
 
